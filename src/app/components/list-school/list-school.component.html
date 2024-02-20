@@ -1,0 +1,14 @@
+
+<section id="el-page-content" style="background-color: transparent;">
+  <div class="el-content-schools">
+    <h2>Continuer en tant que ?</h2>
+    <ul>
+      <li>
+        <button *ngFor="let school of user.userable.schools" mat-button (click)="onClick(school)">
+          <h3>{{ school.name }}</h3>
+          <mat-icon>chevron_right</mat-icon>
+        </button>
+      </li>
+    </ul>
+  </div>
+</section>

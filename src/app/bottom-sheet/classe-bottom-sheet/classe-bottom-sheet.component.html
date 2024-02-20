@@ -1,0 +1,48 @@
+<section id="el-form-content" style="background-color: transparent;">
+    <form [formGroup]="formGroupClasse" (ngSubmit)="onSubmit()">
+        <h2>Nouvelle Classe</h2>
+        <div class="el-row">
+            <mat-form-field>
+                <mat-label>Niveau</mat-label>
+                <mat-select formControlName="level_id">
+                    <mat-option *ngFor="let level of levels" [value]="level.id"> {{ level.code }} <=> {{ level.name | titlecase }} </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Section</mat-label>
+                <mat-select formControlName="section_id" (valueChange)="onChangeSection($event)">
+                    <mat-option *ngFor="let section of sections" [value]="section.id"> {{ section.name | titlecase }} </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Option</mat-label>
+                <mat-select formControlName="option_id">
+                    <mat-option *ngFor="let option of options" [value]="option.id"> {{ option.name | titlecase }} </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+
+        <div class="el-row">
+            <ckeditor
+                formControlName="description"
+                [readonly]="false"
+                (change)="onChange($event)"
+                (editorChange)="onEditorChange($event)"
+                (ready)="onReady($event)"
+                (focus)="onFocus($event)"
+                (blur)="onBlur($event)"
+                (contentDom)="onContentDom($event)"
+                (fileUploadRequest)="onFileUploadRequest($event)"
+                (fileUploadResponse)="onFileUploadResponse($event)"
+                (paste)="onPaste($event)"
+                (drop)="onDrop($event)"
+                debounce="1000">
+            </ckeditor>
+        </div>
+
+        <div class="el-control">
+            <button type="submit" mat-flat-button color="primary">Enregistrer</button>
+            <button type="reset" mat-flat-button color="warn" (click)="onReset()">Annuler</button>
+        </div>
+    </form>
+</section>

@@ -1,0 +1,121 @@
+<section id="el-page-content">
+  <article class="el-container-cards">
+    <div class="el-controls-btns">
+      <button mat-flat-button id="el-create" (click)="onCreateStudent()">
+          <fa-icon [icon]="faUserGraduate"></fa-icon>
+          Nouvel Apprenant
+      </button>
+      <button mat-flat-button id="el-create" (click)="onCreateCourse()">
+          <fa-icon [icon]="faFileAlt"></fa-icon>
+          Nouvelle Matière
+      </button>
+      <button mat-flat-button id="el-create" (click)="onCreateSchedule()">
+          <fa-icon [icon]="faCalendarAlt"></fa-icon>
+          Nouvel Horaire
+      </button>
+    </div>
+    <div class="el-card">
+      <h3>List of Students</h3>
+      <table mat-table [dataSource]="dataSourceStudent">
+
+        <ng-container matColumnDef="position">
+          <th mat-header-cell *matHeaderCellDef> No. </th>
+          <td mat-cell *matCellDef="let element; let i = index"> {{ i + 1 }} </td>
+        </ng-container>
+    
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef> Name </th>
+          <td mat-cell *matCellDef="let element"> {{ element.user.nom + ' ' + element.user.postnom + ' ' + element.user.prenom }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="gender">
+          <th mat-header-cell *matHeaderCellDef> Sexe </th>
+          <td mat-cell *matCellDef="let element"> {{ element.user.gender.name | titlecase }} </td>
+        </ng-container>
+    
+        <ng-container matColumnDef="birth">
+          <th mat-header-cell *matHeaderCellDef> Anniversaire </th>
+          <td mat-cell *matCellDef="let element"> {{ element.user.birth | date: 'dd/MM/yyyy' }} </td>
+        </ng-container>
+    
+        <ng-container matColumnDef="phone">
+          <th mat-header-cell *matHeaderCellDef> Téléphone </th>
+          <td mat-cell *matCellDef="let element"> {{ element.user.phone }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="admission">
+          <th mat-header-cell *matHeaderCellDef> Admission </th>
+          <td mat-cell *matCellDef="let element"> {{ element.created_at | date: 'dd/MM/yyyy' }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="action">
+          <th mat-header-cell *matHeaderCellDef> Actions </th>
+          <td mat-cell *matCellDef="let element">
+            <button mat-icon-button [matMenuTriggerFor]="menu"> <mat-icon>more_vert</mat-icon></button>
+              <mat-menu #menu="matMenu">
+                <button mat-menu-item routerLink="/student/{{element.id}}"> <mat-icon>remove_red_eye</mat-icon> Voir</button>
+                <button mat-menu-item (click)="onUpdateStudent(element)"> <mat-icon>edit</mat-icon> Modifier</button>
+                <button mat-menu-item (click)="onDeleteStudent(element)"> <mat-icon>delete</mat-icon> Supprimer</button>
+            </mat-menu>
+          </td>
+        </ng-container>
+    
+        <tr mat-header-row *matHeaderRowDef="displayedColumnsStudent"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumnsStudent;"></tr>
+      </table>
+    
+      <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+                    showFirstLastButtons
+                    aria-label="Select page of periodic elements">
+      </mat-paginator>
+    </div>
+    <div class="el-card">
+      <h3>Liste des cours</h3>
+      <table mat-table [dataSource]="dataSourceCourse">
+
+        <ng-container matColumnDef="no">
+          <th mat-header-cell *matHeaderCellDef> No. </th>
+          <td mat-cell *matCellDef="let element; let i = index"> {{ i + 1 }} </td>
+        </ng-container>
+    
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef> Name </th>
+          <td mat-cell *matCellDef="let element"> {{ element.name | titlecase }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="coefficient">
+          <th mat-header-cell *matHeaderCellDef> Coefficient </th>
+          <td mat-cell *matCellDef="let element"> {{ element.coefficient }} </td>
+        </ng-container>
+    
+        <ng-container matColumnDef="teacher">
+          <th mat-header-cell *matHeaderCellDef> Professeur </th>
+          <td mat-cell *matCellDef="let element"> {{ element.teacher.user.nom + ' ' + element.teacher.user.postnom + ' ' + element.teacher.user.prenom }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="action">
+          <th mat-header-cell *matHeaderCellDef> Actions </th>
+          <td mat-cell *matCellDef="let element">
+            <button mat-icon-button [matMenuTriggerFor]="menu"> <mat-icon>more_vert</mat-icon></button>
+              <mat-menu #menu="matMenu">
+                <button mat-menu-item (click)="onUpdateCourse(element)"> <mat-icon>edit</mat-icon> Modifier</button>
+                <button mat-menu-item (click)="onDeleteCourse(element)"> <mat-icon>delete</mat-icon> Supprimer</button>
+            </mat-menu>
+          </td>
+        </ng-container>
+    
+        <tr mat-header-row *matHeaderRowDef="displayedColumnsCourse"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumnsCourse;"></tr>
+      </table>
+    
+      <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+                    showFirstLastButtons
+                    aria-label="Select page of periodic elements">
+      </mat-paginator>
+    </div>
+    <div class="el-card">
+      <h3>Horaire de la classe {{ classe.level.code + ' ' + classe.section.name | titlecase }} </h3>
+      <full-calendar #fullcalendar [options]="calendarOptions"></full-calendar>
+    </div>
+  </article>
+</section>

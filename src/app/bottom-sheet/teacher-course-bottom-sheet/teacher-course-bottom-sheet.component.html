@@ -1,0 +1,51 @@
+<section id="el-page-content">
+    <article class="el-container-cards">
+      <div class="el-card">
+        <h3>Cours dispensé(s) par {{ teacher.user.nom + ' ' + teacher.user.postnom + ' ' + teacher.user.prenom }}</h3>
+        <table mat-table [dataSource]="dataSourceCourse">
+  
+          <!-- Position Column -->
+          <ng-container matColumnDef="no">
+            <th mat-header-cell *matHeaderCellDef> No. </th>
+            <td mat-cell *matCellDef="let element; let i = index"> {{ i + 1 }} </td>
+          </ng-container>
+      
+          <!-- Name Column -->
+          <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef> Nom </th>
+            <td mat-cell *matCellDef="let element"> {{ element.name | titlecase }} </td>
+          </ng-container>
+  
+          <!-- Name Column -->
+          <ng-container matColumnDef="coefficient">
+            <th mat-header-cell *matHeaderCellDef> Coefficient </th>
+            <td mat-cell *matCellDef="let element"> {{ element.coefficient }} </td>
+          </ng-container>
+
+          <!-- Name Column -->
+          <ng-container matColumnDef="classe">
+            <th mat-header-cell *matHeaderCellDef> Classe </th>
+            <td mat-cell *matCellDef="let element"> {{ element.classe.level.code }} <=> {{ element.classe.level.name | titlecase }} | {{ element.classe.section.name | uppercase }} {{ element.classe.level.code >=3 && element.classe.section.id === 3 ? '| ' + element.classe.option.name : '' }} </td>
+          </ng-container>
+
+          <!-- Name Column -->
+          <ng-container matColumnDef="schedule">
+            <th mat-header-cell *matHeaderCellDef> Planing </th>
+            <td mat-cell *matCellDef="let element">
+                <ul>
+                    <li *ngFor="let schedule of element.schedules"> {{ schedule.day + ' de ' + formatTime(schedule.start_at) + ' à ' + formatTime(schedule.end_at) }} </li>
+                </ul>
+            </td>
+          </ng-container>
+      
+          <tr mat-header-row *matHeaderRowDef="displayedColumnsCourse"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumnsCourse;"></tr>
+        </table>
+      
+        <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+                      showFirstLastButtons
+                      aria-label="Select page of periodic elements">
+        </mat-paginator>
+      </div>
+    </article>
+</section>

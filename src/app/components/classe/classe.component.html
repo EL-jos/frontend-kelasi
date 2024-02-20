@@ -1,0 +1,42 @@
+<section id="el-form-content" style="background-color: transparent;">
+    <form>
+        <h2>Nouvelle Classe</h2>
+        <div class="el-row">
+            <mat-form-field>
+                <mat-label>Niveau</mat-label>
+                <mat-select>
+                    <mat-option *ngFor="let level of levels" [value]="level.id"> {{ level.name }} <=> {{ level.name }} </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Section</mat-label>
+                <mat-select>
+                    <mat-option *ngFor="let section of sections" [value]="section.id"> {{ section.name }} </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+
+        <div class="el-row">
+            <ckeditor
+                [(ngModel)]="ckeditorContent"
+                [readonly]="false"
+                (change)="onChange($event)"
+                (editorChange)="onEditorChange($event)"
+                (ready)="onReady($event)"
+                (focus)="onFocus($event)"
+                (blur)="onBlur($event)"
+                (contentDom)="onContentDom($event)"
+                (fileUploadRequest)="onFileUploadRequest($event)"
+                (fileUploadResponse)="onFileUploadResponse($event)"
+                (paste)="onPaste($event)"
+                (drop)="onDrop($event)"
+                debounce="1000">
+            </ckeditor>
+        </div>
+
+        <div class="el-control">
+            <button type="submit" mat-flat-button color="primary">Enregistrer</button>
+            <button type="reset" mat-flat-button color="warn">Annuler</button>
+        </div>
+    </form>
+</section>

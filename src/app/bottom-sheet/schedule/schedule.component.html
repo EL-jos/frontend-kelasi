@@ -1,0 +1,36 @@
+<section id="el-form-content" style="background-color: transparent;">
+    <form [formGroup]="formGroupSchedule" (ngSubmit)="onSubmit()">
+        <h2>Nouvelle Classe</h2>
+        <div class="el-row">
+            <mat-form-field>
+                <mat-label>Jour</mat-label>
+                <mat-select formControlName="day">
+                    <mat-option *ngFor="let dayOfWeek of daysOfWeek" [value]="dayOfWeek"> {{ dayOfWeek }} </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Matière</mat-label>
+                <mat-select formControlName="course_id">
+                    <mat-option *ngFor="let course of courses" [value]="course.id"> {{ course.name | titlecase }} </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        
+        <div class="el-row">
+            <mat-form-field>
+                <mat-label>Début à</mat-label>
+                <input matInput type="time" formControlName="start_at">
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Fin à</mat-label>
+                <input matInput type="time" formControlName="end_at">
+            </mat-form-field>
+        </div>
+
+        <div class="el-control">
+            <button type="submit" mat-flat-button color="primary">{{ data.schedule ? 'Modifier' : 'Enregistrer' }}</button>
+            <button type="button" mat-flat-button color="accent" *ngIf="data.schedule" (click)="onDelete()">Supprimer</button>
+            <button type="reset" mat-flat-button color="warn" (click)="onReset()">Annuler</button>
+        </div>
+    </form>
+</section>

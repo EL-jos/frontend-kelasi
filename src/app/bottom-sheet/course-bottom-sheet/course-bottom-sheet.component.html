@@ -1,0 +1,29 @@
+<section id="el-form-content" style="background-color: transparent;">
+    <form [formGroup]="formGroupCourse" (ngSubmit)="onSubmit()">
+        <h2>Nouvelle Matière</h2>
+        <div class="el-row">
+            <mat-form-field>
+                <mat-label>Nom</mat-label>
+                <input matInput formControlName="name">
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Coefficient</mat-label>
+                <input matInput formControlName="coefficient">
+            </mat-form-field>
+            
+        </div>
+        <div class="el-row">
+            <mat-form-field>
+                <mat-label>Professeur</mat-label>
+                <mat-select formControlName="teacher_id">
+                    <mat-option *ngFor="let teacher of teachers" [value]="teacher.id"> {{ teacher.user.nom + ' ' + teacher.user.postnom + ' ' + teacher.user.prenom }} </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+
+        <div class="el-control">
+            <button type="submit" mat-flat-button color="primary">Enregistrer</button>
+            <button type="reset" mat-flat-button color="warn" (click)="onReset()">Annuler</button>
+        </div>
+    </form>
+</section>

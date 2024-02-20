@@ -1,0 +1,71 @@
+<section id="el-page-content">
+    <form [formGroup]="formGroupTeacher" (ngSubmit)="onSubmit()">
+        <h2>Nouveau Professeur</h2>
+        <div class="el-row">
+            <mat-form-field>
+                <mat-label>Nom</mat-label>
+                <input matInput type="text" formControlName="nom">
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Postnom</mat-label>
+                <input matInput type="text" formControlName="postnom">
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Prénom</mat-label>
+                <input matInput type="text" formControlName="prenom">
+            </mat-form-field>
+        </div>
+        <div class="el-row">
+            <mat-form-field>
+                <mat-label>E-mail</mat-label>
+                <input matInput type="email" formControlName="email">
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Groupe Sanguin</mat-label>
+                <mat-select formControlName="blood_group">
+                    <mat-option *ngFor="let blood_group of blood_groups" [value]="blood_group"> {{ blood_group }} </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Genre</mat-label>
+                <mat-select formControlName="gender_id">
+                    <mat-option *ngFor="let genre of genders" [value]="genre.id"> {{ genre.name | titlecase }} </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div class="el-row">
+            <mat-form-field>
+                <mat-label>Phone</mat-label>
+                <input matInput type="tel" formControlName="phone">
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Anniversaire</mat-label>
+                <input matInput [matDatepicker]="picker" formControlName="birth">
+                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+              </mat-form-field>
+            <mat-form-field>
+                <mat-label>Adresse</mat-label>
+                <input matInput type="text" formControlName="address">
+            </mat-form-field>
+        </div>
+        <div class="el-row">
+            <mat-form-field>
+                <mat-label>Mot de passe</mat-label>
+                <input matInput type="password" formControlName="password">
+            </mat-form-field>
+        </div>
+        <div class="el-row">
+            <mat-form-field class="example-full-width">
+                <mat-label>Historique médical</mat-label>
+                <textarea matInput formControlName="medical_history"></textarea>
+            </mat-form-field>
+            
+        </div>
+
+        <div class="el-control">
+            <button type="submit" mat-flat-button color="primary">Enregistrer</button>
+            <button type="reset" mat-flat-button color="warn" (click)="onReset()">Annuler</button>
+        </div>
+    </form>
+</section>

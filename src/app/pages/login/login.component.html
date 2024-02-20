@@ -1,0 +1,21 @@
+<section id="el-page-content">
+    <div class="el-content-form el-box-center">
+      <form [formGroup]="formGroupLogIn" (ngSubmit)="onLogIn()">
+        <h2>login</h2>
+        <legend>Hi, welcome back</legend>
+        <div class="el-row">
+          <mat-form-field class="example-full-width">
+            <mat-label>E-mail</mat-label>
+            <input matInput type="email" placeholder="Votre adresse mail" formControlName="email">
+          </mat-form-field>
+          <mat-form-field class="example-full-width">
+            <mat-label>Mot de passe</mat-label>
+            <input matInput type="password" placeholder="Votre mot de passe" formControlName="password">
+          </mat-form-field>
+        </div>
+        <button mat-raised-button color="primary" >
+          Connexion
+        </button>
+      </form>
+    </div>
+  </section>

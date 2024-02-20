@@ -1,0 +1,10 @@
+form .el-row,
+.el-container-cards{
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+.el-container-cards{
+    flex-direction: column;
+    align-items: normal; 
+}

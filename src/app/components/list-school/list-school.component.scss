@@ -1,0 +1,42 @@
+.el-card{
+    padding: 1rem;
+    width: 100%;
+}
+h2{
+    font-size: 1.7rem;
+}
+ion-item{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .mat-icon{
+        color: #68686d;
+    }
+}
+
+ul{
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    width: 100%;
+}ul button{
+    display: flex;
+    align-content: center;
+    width: 100%;
+    justify-content: space-between;
+    cursor: pointer;
+    outline: none;
+    border: none;
+    background: none;
+    transition: .3s ease;
+    padding: 1rem;
+    h3{
+        margin: 0;
+    }
+}ul button:not(:last-of-type){
+    border-bottom: 1px solid rgba(0, 0, 0, .15);
+}ul li .mat-icon{
+    color: #68686d;
+}ul button:hover{
+    background-color: rgba(242, 242, 242, .8);
+}
